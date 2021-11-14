@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <!--指定特定数据库的jdbc驱动jar包的位置-->
+
+    <context id="default" targetRuntime="MyBatis3">
+
+        <!--覆盖生成XML文件-->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
+        <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!-- 数据库连接信息 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/farm?useSSL=false"
+                        userId="root"
+                        password="root">
+            <property name="serverTimezone" value="UTC"/>
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <!-- 配置model生成目录和其它参数 -->
+        <javaModelGenerator targetPackage="com.farmer.db.domain" targetProject="src/main/java/">
+            <!-- 			<property name="rootClass" value="com.rongyi.merchant.biz.domain.BaseEntity"/> -->
+        </javaModelGenerator>
+        <!-- 配置mapper生成目录和其它参数 -->
+        <sqlMapGenerator targetPackage="com.farmer.db.mapping" targetProject="src/main/java/"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.farmer.db.mapper"
+                             targetProject="src/main/tmp">
+            <!-- <property name="rootInterface" value="BaseMapper"/> -->
+        </javaClientGenerator>
+
+        <table tableName="test" domainObjectName="TestDB"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+    </context>
+
+</generatorConfiguration>
